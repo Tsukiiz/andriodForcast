@@ -8,6 +8,6 @@ class LandingViewModel: ViewModel() {
     // Create a LiveData with a String
     val currentName = MutableLiveData<String>()
     fun initialize() {
-        
+        currentName.value = "Hello data biding"
     }
 }

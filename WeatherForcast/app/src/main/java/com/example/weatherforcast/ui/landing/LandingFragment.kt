@@ -23,22 +23,25 @@ private const val ARG_PARAM2 = "param2"
  */
 class LandingFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
     private val landingViewModel: LandingViewModel by viewModels()
 
+    //initiate data binding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding: FragmentLandingBinding =
             DataBindingUtil.inflate(inflater, com.example.weatherforcast.R.layout.fragment_landing, container, false) as FragmentLandingBinding
             binding.lifecycleOwner = this
-            binding.landingViewModel = landingViewModel
+            binding.vm = landingViewModel // binding vm(located in xml) with landingViewModel(new LandingViewModel instant)
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        landingViewModel.initialize()
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of
